@@ -1,6 +1,6 @@
-# Free Fall Cart
+# Freefall
 
-An experimental shopping cart.
+An experimental product image display. WIP.
 
 ### Usage
 
