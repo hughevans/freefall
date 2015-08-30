@@ -11,7 +11,10 @@ export default class App extends Component {
   }
 
   state = {
-    cards: [],
+    cards: [{
+      caption: 'First',
+      cardNum: 1,
+    }],
   }
 
   startFreefall() {
