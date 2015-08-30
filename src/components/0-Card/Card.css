@@ -7,13 +7,16 @@
 }
 
 @keyframes freefall {
-  from {
-    margin-left: 100%;
-    width: 300%;
+  0% {
+    opacity: 0;
+    transform: rotate(30deg) scale(1.4);
   }
 
-  to {
-    margin-left: 0%;
-    width: 100%;
+  30% {
+    opacity: 100%;
+  }
+
+  100% {
+    transform: rotate(0) scale(1.0);
   }
 }
