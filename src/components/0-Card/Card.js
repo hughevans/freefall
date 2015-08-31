@@ -6,9 +6,9 @@ export default class Card extends Component {
 
   render() {
     return (
-      <div className={styles.card}>
+      <div className={ styles.card }>
         <img src="https://placehold.it/350x350" />
-        <div>{ this.props.caption }</div>
+        <div className= { styles.caption }>{ this.props.caption }</div>
       </div>
     );
   }
