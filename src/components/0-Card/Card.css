@@ -1,13 +1,14 @@
 .card {
   animation-duration: 3s;
   animation-name: freefall;
+  background-color: #fff;
   border-radius: 4px;
   border: 1px solid #efefef;
   box-shadow: 1px 2px 10px #efefef;
-  left: 50px;
+  left: 20%;
   padding: 10px;
   position: fixed;
-  top: 200px;
+  top: 10%;
 }
 
 @keyframes freefall {
@@ -16,7 +17,7 @@
     transform: rotate(30deg) scale(1.4);
   }
 
-  30% {
+  20% {
     opacity: 100%;
   }
 
