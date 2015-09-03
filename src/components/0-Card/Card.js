@@ -29,7 +29,7 @@ export default class Card extends Component {
   }
 
   randomRotation() {
-    return (Math.floor(Math.random() * 600) / 10) - 30;
+    return (Math.pow(Math.random(), 2) * 300 / 10) - (Math.pow(Math.random(), 2) * 300 / 10);
   }
 
   imageSrc() {
