@@ -15,7 +15,7 @@
   0% {
     opacity: 0;
     transform: rotate(30deg) scale(1.4);
-    box-shadow: 1px 2px 50px rgba(0,0,0,0.1);
+    box-shadow: 1px 2px 75px rgba(0,0,0,0.35);
   }
 
   20% {

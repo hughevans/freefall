@@ -27,7 +27,7 @@ export default class Card extends Component {
   }
 
   imageSrc() {
-    return 'https://placehold.it/' + this.state.width + 'x' + this.state.height
+    return 'https://placehold.it/' + this.state.width + 'x' + this.state.height;
   }
 
   render() {
