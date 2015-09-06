@@ -11,10 +11,35 @@ export default class App extends Component {
   }
 
   state = {
-    cards: [{
-      caption: 'First',
-      cardNum: 1,
-    }],
+    currentCard: 0,
+    cards: this.generateCards(),
+  }
+
+  generateCards() {
+    let cards = [];
+
+    for (var num = 0; num < 20; num++) {
+      cards.push(this.generateCard(num));
+    }
+
+    return cards;
+  }
+
+  generateCard(num) {
+    let height = this.randomSize();
+    let width = this.randomSize();
+
+    return {
+      id: num + 1,
+      displayed: num == 0,
+      height: height,
+      width: width,
+      src: 'https://placehold.it/' + width + 'x' + height,
+    }
+  }
+
+  randomSize() {
+    return Math.floor(Math.random() * 300) + 100;
   }
 
   startFreefall() {
@@ -23,25 +48,22 @@ export default class App extends Component {
 
   addCard = () => {
     let cards = this.state.cards;
-    let newCardNum = 1;
+    let currentCard = this.state.currentCard;
+    let nextCard = ((currentCard + 1) >= cards.length) ? currentCard : (currentCard + 1);
 
-    if (this.state.cards.length > 0) {
-      newCardNum = this.state.cards[this.state.cards.length - 1].cardNum + 1;
-    }
+    cards[currentCard].displayed = true;
 
-    cards.push({
-      caption: 'Caption',
-      cardNum: newCardNum,
+    this.setState({
+      currentCard: nextCard,
+      cards: cards,
     });
-
-    if (this.state.cards.length > 20) { cards.shift() }
-
-    this.setState({ cards: cards });
   }
 
   cards() {
     return this.state.cards.map((card) => {
-      return <Card key={ card.cardNum } caption= { card.cardNum + '. ' + card.caption } />;
+      if (card.displayed) {
+        return <Card key={ card.id } card={ card } />;
+      }
     });
   }
 
