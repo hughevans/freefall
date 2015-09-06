@@ -30,11 +30,12 @@ export default class App extends Component {
     let width = this.randomSize();
 
     return {
-      id: num + 1,
+      caption: num + 1 + '. Caption',
       displayed: num == 0,
       height: height,
       width: width,
       src: 'https://placehold.it/' + width + 'x' + height,
+      zIndex: num + 1,
     }
   }
 
@@ -59,10 +60,34 @@ export default class App extends Component {
     });
   }
 
+  activateCard = (index) => {
+    let cards = this.state.cards;
+    let card = cards[index];
+    let topZIndex = this.topZIndex();
+
+    cards.forEach((thisCard) => {
+      if (thisCard.displayed && thisCard.zIndex > card.zIndex) {
+        thisCard.zIndex--;
+      }
+    });
+
+    card.zIndex = topZIndex;
+
+    this.setState({ cards: cards })
+  }
+
+  topZIndex() {
+    let top = 0;
+    this.state.cards.forEach(function(card) {
+      if (card.displayed && card.zIndex > top) { top = card.zIndex }
+    });
+    return top;
+  }
+
   cards() {
-    return this.state.cards.map((card) => {
+    return this.state.cards.map((card, index) => {
       if (card.displayed) {
-        return <Card key={ card.id } card={ card } />;
+        return <Card key={ index } index={ index } card={ card } activateCard={ this.activateCard } />;
       }
     });
   }

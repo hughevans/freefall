@@ -32,6 +32,7 @@ export default class Card extends Component {
       left: this.state.x + '%',
       top: this.state.y + '%',
       transform: 'rotate(' + this.state.rotation + 'deg)',
+      zIndex: this.props.card.zIndex,
     };
   }
 
@@ -49,13 +50,17 @@ export default class Card extends Component {
     return (Math.pow(Math.random(), 2) * 300 / 10) - (Math.pow(Math.random(), 2) * 300 / 10);
   }
 
+  activateCard = (e) => {
+    e.preventDefault();
+    this.props.activateCard(this.props.index);
+  }
 
   render() {
     return (
-      <div style={ this.cardStyle() } className={ styles.card }>
+      <a style={ this.cardStyle() } className={ styles.card } onClick={ this.activateCard }>
         <img src={ this.props.card.src } height={ this.props.card.height} width={ this.props.card.width } />
-        <div className={ styles.caption }>{ this.props.caption }</div>
-      </div>
+        <div className={ styles.caption }>{ this.props.card.caption }</div>
+      </a>
     );
   }
 
