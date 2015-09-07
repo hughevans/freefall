@@ -59,7 +59,6 @@ export default class Card extends Component {
     return (
       <a style={ this.cardStyle() } className={ styles.card } onClick={ this.activateCard }>
         <img src={ this.props.card.src } height={ this.props.card.height} width={ this.props.card.width } />
-        <div className={ styles.caption }>{ this.props.card.caption }</div>
       </a>
     );
   }

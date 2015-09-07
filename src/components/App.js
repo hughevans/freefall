@@ -30,7 +30,6 @@ export default class App extends Component {
     let width = this.randomSize();
 
     return {
-      caption: num + 1 + '. Caption',
       displayed: num == 0,
       height: height,
       width: width,
