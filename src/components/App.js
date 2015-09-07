@@ -18,7 +18,7 @@ export default class App extends Component {
   generateCards() {
     let cards = [];
 
-    for (var num = 0; num < 20; num++) {
+    for (var num = 0; num < 40; num++) {
       cards.push(this.generateCard(num));
     }
 
