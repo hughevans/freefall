@@ -7,18 +7,19 @@ import Card from './0-Card/Card';
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.startFreefall();
+    this.preloadInitialImages();
   }
 
   state = {
-    currentCard: 0,
     cards: this.generateCards(),
+    currentCard: 0,
+    preLoadedImages: 0,
   }
 
   generateCards() {
     let cards = [];
 
-    for (var num = 0; num < 40; num++) {
+    for (let num = 0; num < 40; num++) {
       cards.push(this.generateCard(num));
     }
 
@@ -30,7 +31,7 @@ export default class App extends Component {
     let width = this.randomSize();
 
     return {
-      displayed: num == 0,
+      displayed: false,
       height: height,
       width: width,
       src: 'https://placehold.it/' + width + 'x' + height,
@@ -40,6 +41,43 @@ export default class App extends Component {
 
   randomSize() {
     return Math.floor(Math.random() * 300) + 100;
+  }
+
+  preloadInitialImages() {
+    for (let index = 0; index < 5; index++) {
+      this.preloadImage(index);
+    }
+  }
+
+  preloadImage(index) {
+    let img = new Image();
+    img.src = this.state.cards[index].src;
+    img.onload = this.preloadedImage;
+  }
+
+  preloadedImage = () => {
+    let preLoadedImages = this.state.preLoadedImages;
+    let cards = this.state.cards;
+
+    preLoadedImages++;
+
+    if (preLoadedImages == 5) {
+      cards[0].displayed = true;
+      this.startFreefall();
+    }
+
+    this.setState({
+      cards: cards,
+      preLoadedImages: preLoadedImages
+    });
+  }
+
+  preLoadNextImageAfterAnimation() {
+    let nextCard = this.state.currentCard + 5;
+
+    if (nextCard < this.state.cards.length) {
+      setTimeout(() => this.preloadImage(nextCard), 2000);
+    }
   }
 
   startFreefall() {
@@ -92,6 +130,8 @@ export default class App extends Component {
   }
 
   render() {
+    this.preLoadNextImageAfterAnimation();
+
     return (
       <div className={ styles.canvas }>
         { this.cards() }
