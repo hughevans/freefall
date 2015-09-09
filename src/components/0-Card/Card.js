@@ -45,7 +45,7 @@ export default class Card extends Component {
 
   render() {
     return (
-      <a style={ this.cardStyle() } className={ styles.card } onClick={ this.activateCard }>
+      <a style={ this.cardStyle() } className={ styles.card } onMouseDown={ this.activateCard }>
         <img src={ this.props.card.src } height={ this.props.card.height} width={ this.props.card.width } />
       </a>
     );
