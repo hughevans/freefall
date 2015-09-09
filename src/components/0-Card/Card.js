@@ -77,11 +77,18 @@ export default class Card extends Component {
     return Math.random() * (100 - pecentageOfHeight);
   }
 
+  transformCSS() {
+    return 'rotate(' + this.state.rotation + 'deg)';
+  }
+
   cardStyle() {
     return {
       left: this.state.pos.x + '%',
       top: this.state.pos.y + '%',
-      transform: 'rotate(' + this.state.rotation + 'deg)',
+      transform: this.transformCSS(),
+      WebkitTransform: this.transformCSS(),
+      MozTransform: this.transformCSS(),
+      msTransform: this.transformCSS(),
       zIndex: this.props.card.zIndex,
     };
   }
