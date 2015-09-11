@@ -34,7 +34,7 @@ export default class App extends Component {
       displayed: false,
       height: height,
       width: width,
-      src: 'https://placehold.it/' + width + 'x' + height,
+      src: 'http://lorempixel.com/' + width + '/' + height,
       zIndex: num + 1,
     }
   }
