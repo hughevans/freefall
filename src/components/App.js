@@ -34,13 +34,21 @@ export default class App extends Component {
       displayed: false,
       height: height,
       width: width,
-      src: 'http://www.fillmurray.com/' + width + '/' + height,
+      src: 'http://www.fillmurray.com/' + this.retinaSize(width) + '/' + this.retinaSize(height),
       zIndex: num + 1,
     }
   }
 
   randomSize() {
     return Math.floor(Math.random() * 300) + 100;
+  }
+
+  retinaSize(size) {
+    if (window.devicePixelRatio === undefined) {
+      return size;
+    } else {
+      return Math.floor(size * window.devicePixelRatio);
+    }
   }
 
   preloadInitialImages() {
