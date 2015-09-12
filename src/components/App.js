@@ -75,7 +75,7 @@ export default class App extends Component {
   preLoadNextImageAfterAnimation() {
     let nextCard = this.state.currentCard + 5;
 
-    if (nextCard < this.state.cards.length) {
+    if (nextCard > this.state.preLoadedImages && nextCard < this.state.cards.length) {
       setTimeout(() => this.preloadImage(nextCard), 2000);
     }
   }
@@ -87,14 +87,18 @@ export default class App extends Component {
   addCard = () => {
     let cards = this.state.cards;
     let currentCard = this.state.currentCard;
-    let nextCard = ((currentCard + 1) >= cards.length) ? currentCard : (currentCard + 1);
+    let nextCard = currentCard + 1;
 
-    cards[currentCard].displayed = true;
+    if (nextCard < cards.length) {
+      this.preLoadNextImageAfterAnimation();
 
-    this.setState({
-      currentCard: nextCard,
-      cards: cards,
-    });
+      cards[currentCard].displayed = true;
+
+      this.setState({
+        currentCard: nextCard,
+        cards: cards,
+      });
+    }
   }
 
   activateCard = (index) => {
@@ -130,8 +134,6 @@ export default class App extends Component {
   }
 
   render() {
-    this.preLoadNextImageAfterAnimation();
-
     return (
       <div className={ styles.canvas }>
         { this.cards() }
