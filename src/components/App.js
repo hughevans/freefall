@@ -34,7 +34,7 @@ export default class App extends Component {
       displayed: false,
       height: height,
       width: width,
-      src: 'http://lorempixel.com/' + width + '/' + height,
+      src: 'http://www.fillmurray.com/' + width + '/' + height,
       zIndex: num + 1,
     }
   }
