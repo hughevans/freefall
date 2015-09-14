@@ -1,7 +1,7 @@
 {
   "name": "freefall",
   "version": "0.0.1",
-  "description": "An experimental shopping cart.",
+  "description": "An experimental image display.",
   "scripts": {
     "start": "node server.js",
     "lint": "eslint src"
