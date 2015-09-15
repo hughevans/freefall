@@ -122,7 +122,7 @@ export default class App extends Component {
 
     card.zIndex = topZIndex;
 
-    this.setState({ cards: cards })
+    this.setState({ cards: cards });
   }
 
   topZIndex() {
