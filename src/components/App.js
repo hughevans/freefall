@@ -83,7 +83,7 @@ export default class App extends Component {
   preLoadNextImageAfterAnimation() {
     let nextCard = this.state.currentCard + 5;
 
-    if (nextCard > this.state.preLoadedImages && nextCard < this.state.cards.length) {
+    if (nextCard >= this.state.preLoadedImages && nextCard < this.state.cards.length) {
       setTimeout(() => this.preloadImage(nextCard), 2000);
     }
   }
