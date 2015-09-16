@@ -106,6 +106,15 @@ export default class App extends Component {
         currentCard: nextCard,
         cards: cards,
       });
+    } else {
+      cards.forEach((thisCard, index) => {
+        thisCard.displayed = false;
+      });
+
+      this.setState({
+        currentCard: 0,
+        cards: cards,
+      });
     }
   }
 
