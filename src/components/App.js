@@ -2,7 +2,7 @@ import styles from './App.css';
 
 import React, { Component } from 'react';
 
-import Card from './0-Card/Card';
+import Card from './Card/Card';
 
 export default class App extends Component {
   constructor(props) {
@@ -127,9 +127,11 @@ export default class App extends Component {
 
   topZIndex() {
     let top = 0;
+
     this.state.cards.forEach(function(card) {
       if (card.displayed && card.zIndex > top) { top = card.zIndex }
     });
+
     return top;
   }
 
