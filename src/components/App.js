@@ -102,20 +102,17 @@ export default class App extends Component {
 
       cards[currentCard].displayed = true;
 
-      this.setState({
-        currentCard: nextCard,
-        cards: cards,
-      });
+      if (nextCard > cards.length / 2) {
+        cards[currentCard - (cards.length / 2)].displayed = false;
+      }
     } else {
-      cards.forEach((thisCard, index) => {
-        thisCard.displayed = false;
-      });
-
-      this.setState({
-        currentCard: 0,
-        cards: cards,
-      });
+      nextCard = 0;
     }
+
+    this.setState({
+      currentCard: nextCard,
+      cards: cards,
+    });
   }
 
   activateCard = (index) => {
