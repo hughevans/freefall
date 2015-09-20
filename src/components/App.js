@@ -106,9 +106,19 @@ export default class App extends Component {
         currentCard: nextCard,
         cards: cards,
       });
+    } else if (nextCard == cards.length) {
+      cards.forEach((thisCard, index) => {
+        thisCard.fadeOut = true;
+      });
+
+      this.setState({
+        currentCard: nextCard,
+        cards: cards,
+      });
     } else {
       cards.forEach((thisCard, index) => {
         thisCard.displayed = false;
+        thisCard.fadeOut = false;
       });
 
       this.setState({
