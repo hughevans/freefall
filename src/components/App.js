@@ -70,14 +70,10 @@ export default class App extends Component {
     preLoadedImages++;
 
     if (preLoadedImages == 5) {
-      cards[0].displayed = true;
       this.startFreefall();
     }
 
-    this.setState({
-      cards: cards,
-      preLoadedImages: preLoadedImages
-    });
+    this.setState({ preLoadedImages: preLoadedImages });
   }
 
   preLoadNextImageAfterAnimation() {
@@ -89,6 +85,8 @@ export default class App extends Component {
   }
 
   startFreefall() {
+    this.addCard();
+    this.setState({ playing: true });
     this.freefallTimer = setInterval(this.addCard, 3000);
   }
 
@@ -162,10 +160,34 @@ export default class App extends Component {
     });
   }
 
+  stopStartLabel() {
+    return this.state.playing ? 'Pause' : 'Resume';
+  }
+
+  stopStart = () => {
+    if (this.state.playing) {
+      clearInterval(this.freefallTimer);
+      this.setState({ playing: false })
+    } else {
+      this.startFreefall()
+    }
+  }
+
+  stopStartButton() {
+    if (this.state.playing != undefined) {
+      return (
+        <a className= { styles.stopStart } onClick={ this.stopStart }>
+          { this.stopStartLabel() }
+        </a>
+      )
+    }
+  }
+
   render() {
     return (
       <div className={ styles.canvas }>
         { this.cards() }
+        { this.stopStartButton() }
       </div>
     );
   }

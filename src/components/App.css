@@ -9,3 +9,11 @@ html {
   right: 0;
   top: 0;
 }
+
+.stopStart {
+  bottom: 10px;
+  cursor: pointer;
+  position: fixed;
+  right: 10px;
+  z-index: 10000;
+}
