@@ -117,7 +117,7 @@ export default class Card extends Component {
     return (
       <a
         style={ this.cardStyle() }
-        className={ this.props.card.fadeOut ? (styles.fadeOut + ' ' + styles.card) : styles.card }
+        className={ this.props.card.fadeOut ? styles.fadeOutCard : styles.card }
         onMouseDown={ this.onMouseDown }
         onTouchStart={ this.onMouseDown }
       >

@@ -11,7 +11,8 @@
   top: 10%;
 }
 
-.fadeOut {
+.fadeOutCard {
+  composes: card;
   animation-duration: 2s;
   animation-fill-mode: forwards;
   animation-name: fadeOut;
