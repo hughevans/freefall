@@ -11,6 +11,19 @@ html {
   position: fixed;
   right: 0;
   top: 0;
+  transform-style: preserve-3d;
+}
+
+.loading {
+  color: #1e1e1f;
+  font-size: 13px;
+  left: 50%;
+  letter-spacing: 2.2px;
+  margin-right: -50%;
+  position: absolute;
+  text-transform: uppercase;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .stopStart {

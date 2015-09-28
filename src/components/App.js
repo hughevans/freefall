@@ -86,7 +86,10 @@ export default class App extends Component {
 
   startFreefall() {
     this.addCard();
-    this.setState({ playing: true });
+    this.setState({
+      playing: true,
+      loaded: true
+    });
     this.freefallTimer = setInterval(this.addCard, 3000);
   }
 
@@ -160,6 +163,18 @@ export default class App extends Component {
     });
   }
 
+  cardsOrLoading() {
+    if (this.state.loaded) {
+      return this.cards();
+    } else {
+      return (
+        <div className={ styles.loading }>
+          loading…
+        </div>
+      )
+    }
+  }
+
   stopStartLabel() {
     return this.state.playing ? 'Pause' : 'Resume';
   }
@@ -186,7 +201,7 @@ export default class App extends Component {
   render() {
     return (
       <div className={ styles.canvas }>
-        { this.cards() }
+        { this.cardsOrLoading() }
         { this.stopStartButton() }
       </div>
     );
