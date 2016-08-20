@@ -1,8 +1,6 @@
-import styles from './App.css';
-
 import React, { Component } from 'react';
-
 import Card from './Card/Card';
+import './App.css';
 
 export default class App extends Component {
   constructor(props) {
@@ -65,11 +63,10 @@ export default class App extends Component {
 
   preloadedImage = () => {
     let preLoadedImages = this.state.preLoadedImages;
-    let cards = this.state.cards;
 
     preLoadedImages++;
 
-    if (preLoadedImages == 5) {
+    if (preLoadedImages === 5) {
       this.startFreefall();
     }
 
@@ -107,7 +104,7 @@ export default class App extends Component {
         currentCard: nextCard,
         cards: cards,
       });
-    } else if (nextCard == cards.length) {
+    } else if (nextCard === cards.length) {
       cards.forEach((thisCard, index) => {
         thisCard.fadeOut = true;
       });
@@ -155,11 +152,15 @@ export default class App extends Component {
     return top;
   }
 
+  displayedCards() {
+    return this.state.cards.filter(function(card) {
+      return card.displayed;
+    });
+  }
+
   cards() {
-    return this.state.cards.map((card, index) => {
-      if (card.displayed) {
-        return <Card key={ index } index={ index } card={ card } activateCard={ this.activateCard } />;
-      }
+    return this.displayedCards().map((card, index) => {
+      return <Card key={ index } index={ index } card={ card } activateCard={ this.activateCard } />;
     });
   }
 
@@ -168,7 +169,7 @@ export default class App extends Component {
       return this.cards();
     } else {
       return (
-        <div className={ styles.loading }>
+        <div className="loading">
           loading…
         </div>
       )
@@ -189,9 +190,9 @@ export default class App extends Component {
   }
 
   stopStartButton() {
-    if (this.state.playing != undefined) {
+    if (this.state.playing !== undefined) {
       return (
-        <a className= { styles.stopStart } onClick={ this.stopStart }>
+        <a className="stopStart" onClick={ this.stopStart }>
           { this.stopStartLabel() }
         </a>
       )
@@ -200,7 +201,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className={ styles.canvas }>
+      <div className="canvas">
         { this.cardsOrLoading() }
         { this.stopStartButton() }
       </div>

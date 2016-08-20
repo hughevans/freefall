@@ -11,8 +11,11 @@
   top: 10%;
 }
 
-.fadeOutCard {
-  composes: card;
+.card img {
+  display: block;
+}
+
+.fadeOutAnim {
   animation-duration: 2s;
   animation-fill-mode: forwards;
   animation-name: fadeOut;

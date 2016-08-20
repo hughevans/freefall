@@ -1,12 +1,7 @@
-import styles from './Card.css';
-
 import React, { Component } from 'react';
+import './Card.css';
 
 export default class Card extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   state = {
     dragging: false,
     pos: {
@@ -112,16 +107,19 @@ export default class Card extends Component {
   }
 
   render() {
-    React.initializeTouchEvents(true);
-
     return (
       <a
         style={ this.cardStyle() }
-        className={ this.props.card.fadeOut ? styles.fadeOutCard : styles.card }
+        className={ this.props.card.fadeOut ? 'card fadeOutAnim' : 'card' }
         onMouseDown={ this.onMouseDown }
         onTouchStart={ this.onMouseDown }
       >
-        <img src={ this.props.card.src } height={ this.props.card.height} width={ this.props.card.width } />
+        <img
+          src={ this.props.card.src }
+          height={ this.props.card.height}
+          width={ this.props.card.width }
+          alt="Random from unsplash.it"
+        />
       </a>
     );
   }
